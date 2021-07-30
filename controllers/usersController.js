@@ -22,8 +22,7 @@ exports.signup = [
 
             res.json({ 'data': rows });
         } catch (err) {
-            console.log(err.message);
-            res.status(500).json({ 'error': err });
+            res.status(409).json({ 'error': err.message });
         }
     }
 ];
@@ -55,7 +54,6 @@ exports.login = [
 
             res.json({ user: { users_id, username, is_active }, token, avatar });
         } catch (err) {
-            console.log(err.message);
             res.status(500).json({ 'error': err });
         }
     }
