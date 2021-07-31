@@ -9,8 +9,8 @@ exports.generateWebToken = (user) => {
 exports.validateToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
-    
-    if (token == null) {
+
+    if (token === null) {
         res.sendStatus(401);
         return;
     }
@@ -21,7 +21,6 @@ exports.validateToken = (req, res, next) => {
             return;
         }
 
-        console.log("USER DEL VERIFY", user);
         req.user = user;
         next();
     });

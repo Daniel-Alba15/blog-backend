@@ -16,7 +16,7 @@ exports.createPost = [
         }
 
         const slug = slugify(req.body.title, { lower: true });
-        rows = await db.query('INSERT INTO posts (title, content, slug, user_id) VALUES($1, $2, $3, $4) RETURNING *', [req.body.title, req.body.content, slug, req.user.user_id]);
+        rows = await db.query('INSERT INTO posts (title, content, image, slug, user_id) VALUES($1, $2, $3, $4, $5) RETURNING *', [req.body.title, req.body.content, req.body.image, slug, req.user.user_id]);
 
         res.json({ 'data': rows.rows })
     }
@@ -24,7 +24,7 @@ exports.createPost = [
 
 exports.deletePost = async (req, res) => {
     try {
-        rows = await db.query('DELETE FROM posts WHERE post_id = $1', [req.body.post_id]);
+        rows = await db.query('DELETE FROM posts WHERE post_id = $1', [req.params.post_id]);
 
         res.json({ 'data': rows.rows })
     } catch (err) {
