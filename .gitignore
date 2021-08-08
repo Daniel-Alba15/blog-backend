@@ -155,5 +155,4 @@ dist
 .history
 .ionide
 
-sql
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,linux,dotenv
