@@ -91,9 +91,13 @@ exports.getAllComments = async (req, res) => {
 
 exports.getPost = [
     async (req, res) => {
-        const { rows } = await db.query('SELECT * FROM posts WHERE slug = $1', [req.params.slug]);
+        try {
+            const { rows } = await db.query('SELECT * FROM posts WHERE post_id = $1', [req.params.id]);
 
-        res.json(new ApiResponse({ data: rows }));
+            res.json(new ApiResponse({ data: rows }));
+        } catch (e) {
+            console.log(e.message);
+        }
     }
 ];
 
